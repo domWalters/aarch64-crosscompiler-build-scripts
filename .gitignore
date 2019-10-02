@@ -1,0 +1,8 @@
+# Any downloaded rpms or zips
+*.tar.*
+
+# All build folders
+*/
+
+# Vim Files
+*~
