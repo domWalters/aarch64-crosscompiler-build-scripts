@@ -24,3 +24,7 @@ If some kind of error occurs and you need to continue the build process, it is r
 sudo ./setup.sh -unpack && sudo ./run.sh
 
 ```
+
+# Acknowledgements
+
+These scripts are based on a [post from preshing.com](https://preshing.com/20141119/how-to-build-a-gcc-cross-compiler/) along with the [github gist](https://gist.github.com/preshing/41d5c7248dea16238b60) that is available on that site.
