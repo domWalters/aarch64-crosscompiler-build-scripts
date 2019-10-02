@@ -3,7 +3,7 @@ set -euo pipefail
 cd "${0%/*}"
 source ./versions.sh
 
-if [$# -gt 2]; then
+if [ "$#" -gt 2 ]; then
     echo "Too many arguments."
     echo "Usage: ./setup.sh [-redownload -reunpack]"
 fi
