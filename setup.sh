@@ -23,6 +23,7 @@ done
 case $1 in
     "--download" ) 
         # Download packages
+        rm *.tar.*
         wget -nc https://ftp.gnu.org/gnu/binutils/$BINUTILS_VERSION.tar.gz
         wget -nc https://ftp.gnu.org/gnu/gcc/$GCC_VERSION/$GCC_VERSION.tar.gz
         if [ $USE_NEWLIB -ne 0 ]; then
@@ -47,7 +48,7 @@ case $1 in
         rm -r isl-*/ || true
         rm -r linux-*/ || true
         rm -r mpc-*/ || true
-        rm -r mprf-*/ || true
+        rm -r mpfr-*/ || true
         # Unpack
         for f in *.tar*; do 
             tar xfk $f

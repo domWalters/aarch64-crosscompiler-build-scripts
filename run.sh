@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-trap 'previous_command=$this_command; this_command=$BASH_COMMAND' DEBUG
+trap 'this_command=$BASH_COMMAND previous_command=$this_command; ' DEBUG
 trap 'echo FAILED COMMAND: $previous_command' EXIT
 
 #-------------------------------------------------------------------------------------------
