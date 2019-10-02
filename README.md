@@ -1,19 +1,17 @@
 # AArch64 GCC Cross Compiler
-
 This repo contains a set of scripts that allow for easily downloading, configuring, and building an AArch64 Cross Compiler with all the standard C and C++ libraries.
 
 This is intended for use on Centos7, where the default aarch64 compiler available through yum lacks any additional libraries.
 
-The script install the compiler to /opt/cross by default.
+The scripts install the compiler to /opt/cross by default.
 
 # Usage
-
 When running for the first time:
 
 ```bash
 
-sudo chmod +x setup.sh && sudo chmod +x run.sh
-sudo ./setup.sh -download -unpack && sudo ./run.sh
+chmod +x setup.sh run.sh
+sudo ./setup.sh --download && sudo ./run.sh
 
 ```
 
@@ -21,10 +19,9 @@ If some kind of error occurs and you need to continue the build process, it is r
 
 ```bash
 
-sudo ./setup.sh -unpack && sudo ./run.sh
+sudo ./setup.sh --unpack && sudo ./run.sh
 
 ```
 
 # Acknowledgements
-
 These scripts are based on a [post from preshing.com](https://preshing.com/20141119/how-to-build-a-gcc-cross-compiler/) along with the [github gist](https://gist.github.com/preshing/41d5c7248dea16238b60) that is available on that site.
