@@ -11,7 +11,10 @@ fi
 while true; do
     read -p "Warning: This script is going to delete $INSTALL_PATH. Are you sure you wish to continue?" yn
     case $yn in
-        [Yy]* ) rm -r $INSTALL_PATH && rm -r build-*/; break;;
+        [Yy]* ) 
+        rm -r $INSTALL_PATH || true 
+        rm -r build-*/ || true
+        break;;
         [Nn]* ) exit;;
         * ) echo "Please answer, yes or no.";;
     esac
@@ -39,15 +42,15 @@ for var in "$@"; do
             break;;
         "-unpack" ) 
             # Remove unpack locations
-            rm -r binutils-*/
-            rm -r cloog-*/
-            rm -r gcc-*/
-            rm -r glibc-*/
-            rm -r gmp-*/
-            rm -r isl-*/
-            rm -r linux-*/
-            rm -r mpc-*/
-            rm -r mprf-*/
+            rm -r binutils-*/ || true
+            rm -r cloog-*/ || true
+            rm -r gcc-*/ || true
+            rm -r glibc-*/ || true
+            rm -r gmp-*/ || true
+            rm -r isl-*/ || true
+            rm -r linux-*/ || true
+            rm -r mpc-*/ || true
+            rm -r mprf-*/ || true
             # Unpack
             for f in *.tar*; do 
                 tar xfk $f
