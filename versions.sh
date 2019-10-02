@@ -1,4 +1,4 @@
-#!/usr/env/bin bash
+#!/usr/bin/env bash
 
 INSTALL_PATH=/opt/cross
 USE_NEWLIB=0
