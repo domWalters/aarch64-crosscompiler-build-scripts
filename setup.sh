@@ -24,7 +24,6 @@ for var in "$@"; do
     case $var in
         "-download" ) 
             # Download packages
-            export http_proxy=$HTTP_PROXY https_proxy=$HTTP_PROXY ftp_proxy=$HTTP_PROXY
             wget -nc https://ftp.gnu.org/gnu/binutils/$BINUTILS_VERSION.tar.gz
             wget -nc https://ftp.gnu.org/gnu/gcc/$GCC_VERSION/$GCC_VERSION.tar.gz
             if [ $USE_NEWLIB -ne 0 ]; then
