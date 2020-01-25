@@ -11,15 +11,15 @@ When running for the first time:
 ```bash
 
 chmod +x setup.sh run.sh
-sudo ./setup.sh --download && sudo ./run.sh
+./setup.sh --download && sudo ./run.sh
 
 ```
 
-If some kind of error occurs and you need to continue the build process, it is recommended to begin the process again from the unpacking step (as well as to start in a new terminal to reset the environment):
+If some kind of error occurs and you need to continue the build process, it is recommended to begin the process again (as well as to start in a new terminal to reset the environment):
 
 ```bash
 
-sudo ./setup.sh --unpack && sudo ./run.sh
+./setup.sh --clean && ./setup.sh --download && sudo ./run.sh
 
 ```
 

@@ -4,30 +4,44 @@ source ./versions.sh
 
 if [ "$#" -gt 1 ]; then
   echo "Too many arguments."
-  echo "Usage: ./setup.sh [--download --unpack]"
+  echo "Usage: ./setup.sh [--clean --download --unpack]"
 fi
 
-while true; do
-  read -p "Warning: This script is going to delete $INSTALL_PATH. Are you sure you wish to continue? (y/n))" yn
-  case $yn in
-    [Yy]*)
-      rm -r $INSTALL_PATH
-      rm -r build-*/
-      break
-      ;;
-    [Nn]*)
-      exit 0
-      ;;
-    *)
-      echo "Please answer, y or n."
-      ;;
-  esac
-done
-
 case $1 in
-  "--download")
-    # Download packages
+  --clean)
+    # Remove packages
     rm *.tar.*
+    # Remove unpack locations
+    rm -rf binutils-*/
+    rm -rf cloog-*/
+    rm -rf gcc-*/
+    rm -rf glibc-*/
+    rm -rf gmp-*/
+    rm -rf isl-*/
+    rm -rf linux-*/
+    rm -rf mpc-*/
+    rm -rf mpfr-*/
+    # Remove build directores
+    rm -rf build-*/
+    # Remove INSTALL_PATH
+    while true; do
+      read -p "Warning: This script is going to delete $INSTALL_PATH. Are you sure you wish to continue? (y/n))" yn
+      case $yn in
+        [Yy]*)
+          sudo rm -r $INSTALL_PATH
+          break
+          ;;
+        [Nn]*)
+          exit 0
+          ;;
+        *)
+          echo "Please answer, y or n."
+          ;;
+      esac
+    done
+    ;;
+  --download)
+    # Download packages
     wget -nc https://ftp.gnu.org/gnu/binutils/$BINUTILS_VERSION.tar.gz
     wget -nc https://ftp.gnu.org/gnu/gcc/$GCC_VERSION/$GCC_VERSION.tar.gz
     if [ $USE_NEWLIB -ne 0 ]; then
@@ -43,19 +57,10 @@ case $1 in
     wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/$ISL_VERSION.tar.bz2
     wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/$CLOOG_VERSION.tar.gz
     ;&
-  "--unpack")
-    # Remove unpack locations
-    rm -r binutils-*/
-    rm -r cloog-*/
-    rm -r gcc-*/
-    rm -r glibc-*/
-    rm -r gmp-*/
-    rm -r isl-*/
-    rm -r linux-*/
-    rm -r mpc-*/
-    rm -r mpfr-*/
+  --unpack)
     # Unpack
     for f in *.tar*; do
+      echo "Unpacking $f..."
       tar xfk $f
     done
     # Make symbolic links
@@ -68,7 +73,8 @@ case $1 in
     cd ../
     ;;
   *)
-    echo "Invalid argument: $var"
+    echo "Invalid argument."
+    echo "Usage: ./setup.sh [--clean --download --unpack]"
     exit 1
     ;;
 esac
