@@ -18,14 +18,14 @@ case $1 in
     rm -rf glibc-*/
     rm -rf gmp-*/
     rm -rf isl-*/
-    rm -rf linux-*/
+    sudo rm -rf linux-*/
     rm -rf mpc-*/
     rm -rf mpfr-*/
     # Remove build directores
-    rm -rf build-*/
+    sudo rm -rf build-*/
     # Remove INSTALL_PATH
     while true; do
-      read -p "Warning: This script is going to delete $INSTALL_PATH. Are you sure you wish to continue? (y/n))" yn
+      read -p "Warning: This script is going to delete $INSTALL_PATH. Are you sure you wish to continue? (y/n)" yn
       case $yn in
         [Yy]*)
           sudo rm -r $INSTALL_PATH
