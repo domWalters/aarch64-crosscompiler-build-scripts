@@ -44,6 +44,8 @@ mkdir -p build-gcc
 cd build-gcc
 if [ $USE_NEWLIB -ne 0 ]; then
   NEWLIB_OPTION=--with-newlib
+else
+  NEWLIB_OPTION=""
 fi
 ../$GCC_VERSION/configure --prefix=$INSTALL_PATH --target=$TARGET --enable-languages=c,c++ $CONFIGURATION_OPTIONS $NEWLIB_OPTION
 make $PARALLEL_MAKE all-gcc
