@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -euo pipefail
 cd "${0%/*}"
 source ./versions.sh
 
@@ -12,8 +11,8 @@ while true; do
   read -p "Warning: This script is going to delete $INSTALL_PATH. Are you sure you wish to continue? (y/n))" yn
   case $yn in
     [Yy]*)
-      rm -r $INSTALL_PATH || true
-      rm -r build-*/ || true
+      rm -r $INSTALL_PATH
+      rm -r build-*/
       break
       ;;
     [Nn]*)
@@ -32,7 +31,7 @@ case $1 in
     wget -nc https://ftp.gnu.org/gnu/binutils/$BINUTILS_VERSION.tar.gz
     wget -nc https://ftp.gnu.org/gnu/gcc/$GCC_VERSION/$GCC_VERSION.tar.gz
     if [ $USE_NEWLIB -ne 0 ]; then
-      wget -nc -O newlib-master.zip https://github.com/bminor/newlib/archive/master.zip || true
+      wget -nc -O newlib-master.zip https://github.com/bminor/newlib/archive/master.zip
       unzip -qo newlib-master.zip
     else
       wget -nc https://www.kernel.org/pub/linux/kernel/v4.x/$LINUX_KERNEL_VERSION.tar.xz
@@ -46,15 +45,15 @@ case $1 in
     ;&
   "--unpack")
     # Remove unpack locations
-    rm -r binutils-*/ || true
-    rm -r cloog-*/ || true
-    rm -r gcc-*/ || true
-    rm -r glibc-*/ || true
-    rm -r gmp-*/ || true
-    rm -r isl-*/ || true
-    rm -r linux-*/ || true
-    rm -r mpc-*/ || true
-    rm -r mpfr-*/ || true
+    rm -r binutils-*/
+    rm -r cloog-*/
+    rm -r gcc-*/
+    rm -r glibc-*/
+    rm -r gmp-*/
+    rm -r isl-*/
+    rm -r linux-*/
+    rm -r mpc-*/
+    rm -r mpfr-*/
     # Unpack
     for f in *.tar*; do
       tar xfk $f
