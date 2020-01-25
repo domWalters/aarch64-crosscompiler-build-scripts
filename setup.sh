@@ -11,17 +11,22 @@ fi
 while true; do
   read -p "Warning: This script is going to delete $INSTALL_PATH. Are you sure you wish to continue? (y/n))" yn
   case $yn in
-    [Yy]* )
-    rm -r $INSTALL_PATH || true
-    rm -r build-*/ || true
-    break;;
-    [Nn]* ) exit;;
-    * ) echo "Please answer, y or n.";;
+    [Yy]*)
+      rm -r $INSTALL_PATH || true
+      rm -r build-*/ || true
+      break
+      ;;
+    [Nn]*)
+      exit 0
+      ;;
+    *)
+      echo "Please answer, y or n."
+      ;;
   esac
 done
 
 case $1 in
-  "--download" )
+  "--download")
     # Download packages
     rm *.tar.*
     wget -nc https://ftp.gnu.org/gnu/binutils/$BINUTILS_VERSION.tar.gz
@@ -37,8 +42,9 @@ case $1 in
     wget -nc https://ftp.gnu.org/gnu/gmp/$GMP_VERSION.tar.xz
     wget -nc https://ftp.gnu.org/gnu/mpc/$MPC_VERSION.tar.gz
     wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/$ISL_VERSION.tar.bz2
-    wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/$CLOOG_VERSION.tar.gz;&
-  "--unpack" )
+    wget -nc ftp://gcc.gnu.org/pub/gcc/infrastructure/$CLOOG_VERSION.tar.gz
+    ;&
+  "--unpack")
     # Remove unpack locations
     rm -r binutils-*/ || true
     rm -r cloog-*/ || true
@@ -60,6 +66,10 @@ case $1 in
     ln -sf `ls -1d ../mpc-*/` mpc
     ln -sf `ls -1d ../isl-*/` isl
     ln -sf `ls -1d ../cloog-*/` cloog
-    cd ..;;
-  * ) echo "Invalid argument: $var" && exit;;
+    cd ../
+    ;;
+  *)
+    echo "Invalid argument: $var"
+    exit 1
+    ;;
 esac
